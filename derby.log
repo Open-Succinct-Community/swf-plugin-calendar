@@ -1,8 +1,0 @@
-----------------------------------------------------------------
-2013-01-24 09:32:37.212 GMT:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.6.2.1 - (999685): instance a816c00e-013c-6be6-d9b5-0000012e1b08 
-on database directory /home/venky/Projects/java/github/swf-plugin-calendar/target/database/calendar  with class loader sun.misc.Launcher$AppClassLoader@ad89ec 
-Loaded from file:/home/venky/.m2/repository/org/apache/derby/derby/10.6.2.1/derby-10.6.2.1.jar
-java.vendor=Oracle Corporation
-java.runtime.version=1.7.0_09-b30
-Database Class Loader started - derby.database.classpath=''
