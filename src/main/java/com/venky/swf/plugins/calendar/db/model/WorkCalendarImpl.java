@@ -27,7 +27,7 @@ public class WorkCalendarImpl extends ModelImpl<WorkCalendar>{
 				break;
 			}
 		}
-		
+		 
 		if (dayType == null){
 			Date startOfInDate = DateUtils.getStartOfDay(date);
 			for (SpecialNonWorkDay sd:wc.getSpecialNonWorkDays()){
