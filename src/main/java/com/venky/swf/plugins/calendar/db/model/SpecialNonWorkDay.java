@@ -11,8 +11,8 @@ public interface SpecialNonWorkDay extends Model{
 	@UNIQUE_KEY
 	@IS_NULLABLE(false)
 	@HIDDEN
-	public Integer getWorkCalendarId();
-	public void setWorkCalendarId(Integer id);
+	public Long getWorkCalendarId();
+	public void setWorkCalendarId(Long id);
 	public WorkCalendar getWorkCalendar();
 	
 	@UNIQUE_KEY

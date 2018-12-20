@@ -10,8 +10,8 @@ public interface WorkDay extends Model{
 	@UNIQUE_KEY
 	@IS_NULLABLE(false)
 	@HIDDEN
-	public Integer getWorkCalendarId();
-	public void setWorkCalendarId(Integer id);
+	public Long getWorkCalendarId();
+	public void setWorkCalendarId(Long id);
 	public WorkCalendar getWorkCalendar();
 
 	public static final String DOWS = "SUNDAY,MONDAY,TUESDAY,WEDNESDAY,THURSDAY,FRIDAY,SATURDAY" ;
@@ -21,8 +21,8 @@ public interface WorkDay extends Model{
 	public void setDayOfWeek(String dow);
 	
 	
-	public Integer getWorkSlotId();
-	public void setWorkSlotId(Integer id);
+	public Long getWorkSlotId();
+	public void setWorkSlotId(Long id);
 	public WorkSlot getWorkSlot();
 
 }
