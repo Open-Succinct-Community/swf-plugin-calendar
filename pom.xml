@@ -9,7 +9,6 @@
   <artifactId>swf-plugin-calendar</artifactId>
   <name>swf-plugin-calendar</name>
   <description>swf-plugin-calendar</description>
-  <version>2.4-SNAPSHOT</version>
 
   <url>http://maven.apache.org</url>
   <licenses>

@@ -6,6 +6,7 @@ import java.util.List;
 import com.venky.swf.db.annotations.column.IS_NULLABLE;
 import com.venky.swf.db.annotations.column.IS_VIRTUAL;
 import com.venky.swf.db.annotations.column.UNIQUE_KEY;
+import com.venky.swf.db.annotations.column.relationship.CONNECTED_VIA;
 import com.venky.swf.db.annotations.model.MENU;
 import com.venky.swf.db.model.Model;
 
@@ -15,8 +16,8 @@ public interface WorkCalendar extends Model{
 	public String getName();
 	public void setName(String name);
 	
-	public Integer getParentWorkCalendarId();
-	public void setParentWorkCalendarId(Integer id);
+	public Long getParentWorkCalendarId();
+	public void setParentWorkCalendarId(Long id);
 	public WorkCalendar getParentWorkCalendar();
 	
 	@IS_NULLABLE(false)
@@ -32,7 +33,7 @@ public interface WorkCalendar extends Model{
 	public List<SpecialWorkDay> getSpecialWorkDays();
 	public List<SpecialNonWorkDay> getSpecialNonWorkDays();
 	
-	
+	@CONNECTED_VIA("PARENT_WORK_CALENDAR_ID")
 	public List<WorkCalendar> getChildCalendars();
 	public static enum DayType {
 		NON_WORKING,
@@ -50,4 +51,7 @@ public interface WorkCalendar extends Model{
 	
 	@IS_VIRTUAL
 	public  DayType getDefaultDayType(java.util.Date date);
+
+	@IS_VIRTUAL
+	public java.util.Date nextWorkingDay(java.util.Date after);
 }

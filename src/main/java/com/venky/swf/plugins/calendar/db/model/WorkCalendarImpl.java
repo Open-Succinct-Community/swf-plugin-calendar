@@ -88,6 +88,10 @@ public class WorkCalendarImpl extends ModelImpl<WorkCalendar>{
 		return type;
 	}
 	public boolean isWorking(Date date){
+		WorkCalendar wc = getProxy();
+		if (wc.getStartDate().after(date) || wc.getEndDate().before(date)){
+			return false;
+		}
 		return getDayType(date) == DayType.WORKING;
 	}
 	
