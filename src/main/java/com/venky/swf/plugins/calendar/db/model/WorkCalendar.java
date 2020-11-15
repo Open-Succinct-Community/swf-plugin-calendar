@@ -10,7 +10,7 @@ import com.venky.swf.db.annotations.column.relationship.CONNECTED_VIA;
 import com.venky.swf.db.annotations.model.MENU;
 import com.venky.swf.db.model.Model;
 
-@MENU("Calendar")
+@MENU("Inventory")
 public interface WorkCalendar extends Model{
 	@UNIQUE_KEY
 	public String getName();
