@@ -28,30 +28,33 @@ public interface WorkCalendar extends Model{
 	public Date getEndDate();
 	public void setEndDate(Date date);
 	
-	public List<WorkSlot> getWorkSlots();
+	public List<WorkSlot> getWorkSlots(); //These are global list of slots for the calendar on any day.
+
+
 	public List<WorkDay> getWorkDays();
 	public List<SpecialWorkDay> getSpecialWorkDays();
 	public List<SpecialNonWorkDay> getSpecialNonWorkDays();
 	
 	@CONNECTED_VIA("PARENT_WORK_CALENDAR_ID")
 	public List<WorkCalendar> getChildCalendars();
-	public static enum DayType {
+
+	public enum DayType {
 		NON_WORKING,
 		WORKING
 	}
 	
 	@IS_VIRTUAL
 	public boolean isWorking(java.util.Date date);
-	
-	@IS_VIRTUAL
-	public DayType getDayType(java.util.Date date);
-	
-	@IS_VIRTUAL
-	public DayType getSpecialDayType(java.util.Date date);
-	
-	@IS_VIRTUAL
-	public  DayType getDefaultDayType(java.util.Date date);
 
+	@IS_VIRTUAL
+	public WorkSlot getWorkSlot(java.util.Date date);
+
+	@IS_VIRTUAL
+	WorkSlot getSpecialWorkSlot(java.util.Date date);
+
+	@IS_VIRTUAL
+	WorkSlot getDefaultWorkSlot(java.util.Date date);
+	
 	@IS_VIRTUAL
 	public java.util.Date nextWorkingDay(java.util.Date after);
 }

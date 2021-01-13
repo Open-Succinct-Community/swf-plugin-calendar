@@ -45,15 +45,15 @@ public class WorkCalendarTest {
 			cal.save();
 		}
 		try {
-			cal.getDayType(new Date(System.currentTimeMillis()));
-			Assert.fail("Did not fail with it was supposed to fail");
+
+			Assert.assertNull(cal.getWorkSlot(new Date(System.currentTimeMillis())));
 		}catch (Exception ex){
 			Assert.assertEquals(ExceptionUtil.getRootCause(ex).getMessage(), "Outside calendar Range");
 			java.util.Date date = DateUtils.getDate("01/02/2012");
 			
-			Assert.assertNull(cal.getSpecialDayType(date)) ;
-			Assert.assertEquals(DayType.NON_WORKING ,cal.getDefaultDayType(date)) ;
-			Assert.assertEquals(DayType.NON_WORKING ,cal.getDayType(date)) ;
+			Assert.assertNull(cal.getSpecialWorkSlot(date)) ;
+			Assert.assertEquals(null,cal.getDefaultWorkSlot(date)) ;
+			Assert.assertEquals(null,cal.getWorkSlot(date)) ;
 			Assert.assertEquals(false, cal.isWorking(date));
 		}
 		WorkSlot slot = Database.getTable(WorkSlot.class).newRecord();
