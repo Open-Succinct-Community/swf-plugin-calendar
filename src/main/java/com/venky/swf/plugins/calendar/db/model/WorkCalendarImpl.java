@@ -42,7 +42,7 @@ public class WorkCalendarImpl extends ModelImpl<WorkCalendar>{
 		for (SpecialWorkDay workDay : wc.getSpecialWorkDays()){
 			Date st = DateUtils.getTimeOfDay(workDay.getDate(),workDay.getWorkSlot().getStartTime());
 			Date et = DateUtils.getTimeOfDay(workDay.getDate(),workDay.getWorkSlot().getEndTime());
-			if (DateUtils.getStartOfDay(workDay.getDate()).equals(DateUtils.getStartOfDay(date)) && et.compareTo(date) > 0){
+			if ((workDay.getDate().equals(date) || st.compareTo(date) <= 0 ) && et.compareTo(date) >= 0){
 				return workDay.getWorkSlot();
 			}
 		}
@@ -71,7 +71,7 @@ public class WorkCalendarImpl extends ModelImpl<WorkCalendar>{
 			if (DOW.getDOWNumber(day.getDayOfWeek()) == iDow){
 				Date shiftStart = DateUtils.getTimeOfDay(date,day.getWorkSlot().getStartTime());
 				Date shiftEnd = DateUtils.getTimeOfDay(date,day.getWorkSlot().getEndTime());
-				if (shiftEnd.compareTo(date) >0){
+				if ((shiftStart.compareTo(date) <= 0  || date.getTime() == DateUtils.getStartOfDay(date.getTime())) && shiftEnd.compareTo(date) >=0){
 					return day.getWorkSlot();
 				}
 			}

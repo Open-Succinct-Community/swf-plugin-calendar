@@ -80,12 +80,12 @@ public class WorkCalendarTest {
 			}
 		}
 		java.util.Date dec25 = DateUtils.getDate("25/12/2012");
-		Assert.assertFalse(cal.isWorking(dec25));
+		Assert.assertTrue(cal.isWorking(dec25));
 		
 		java.util.Date Dec26 = DateUtils.getDate("26/12/2012");
 		java.util.Date dec24 = DateUtils.getDate("24/12/2012");
 		java.util.Date dec23 = DateUtils.getDate("23/12/2012");
-		Assert.assertFalse(cal.isWorking(Dec26));
+		Assert.assertTrue(cal.isWorking(Dec26));
 		
 		Assert.assertFalse(cal.isWorking(DateUtils.getTimeOfDay(Dec26,"08:00")));
 		Assert.assertTrue(cal.isWorking(DateUtils.getTimeOfDay(Dec26,"09:00")));
