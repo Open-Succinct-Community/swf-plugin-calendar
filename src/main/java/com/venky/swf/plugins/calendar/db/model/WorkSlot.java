@@ -19,13 +19,13 @@ public interface WorkSlot extends Model {
 	public String getName();
 	public void setName(String Name);
 
-	@RegEx("([0-1][0-9]|[2][0-4]):[0-5][0-9]")
+	@RegEx("([0-1][0-9]|[2][0-3]):[0-5][0-9]")
 	@WATERMARK("HH:mm")
 	@IS_NULLABLE(false)
 	public String getStartTime();
 	public void setStartTime(String time);
 	
-	@RegEx("([0-1][0-9]|[2][0-4]):[0-5][0-9]")
+	@RegEx("([0-1][0-9]|[2][0-3]):[0-5][0-9]")
 	@WATERMARK("HH:mm")
 	@IS_NULLABLE(false)
 	public String getEndTime();
