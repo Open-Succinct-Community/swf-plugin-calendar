@@ -1,3 +1,6 @@
 /target/
 /.settings/
-/derby.log
+.commit
+/*/.idea/
+**/.flattened-pom.xml
+derby.log
