@@ -4,12 +4,12 @@
   <parent>
     <groupId>com.github.venkatramanm.swf-all</groupId>
     <artifactId>swf-all</artifactId>
-    <version>${revision}</version>
-        <relativePath>../swf-all/pom.xml</relativePath>
+    <version>2.8</version>
   </parent>
   <artifactId>swf-plugin-calendar</artifactId>
   <name>swf-plugin-calendar</name>
   <description>swf-plugin-calendar</description>
+  <version>2.8-SNAPSHOT</version>
 
   <url>http://maven.apache.org</url>
   <licenses>
