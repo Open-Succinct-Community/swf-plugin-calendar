@@ -74,8 +74,9 @@ public class WorkCalendarImpl extends ModelImpl<WorkCalendar>{
 				if (DateUtils.isStartOfDay(date)){
 					return day.getWorkSlot();
 				}
+				Date shiftStart = DateUtils.getTimeOfDay(date,day.getWorkSlot().getStartTime());
 				Date shiftEnd = DateUtils.getTimeOfDay(date,day.getWorkSlot().getEndTime());
-				if (shiftEnd.compareTo(date) >=0){
+				if (shiftStart.compareTo(date) <= 0 && shiftEnd.compareTo(date) >=0){
 					return day.getWorkSlot();
 				}
 			}
