@@ -57,4 +57,11 @@ public interface WorkCalendar extends Model{
 	
 	@IS_VIRTUAL
 	public java.util.Date nextWorkingDay(java.util.Date after);
+
+	@IS_VIRTUAL
+	/**
+	 * Both included
+	 */
+	public int numWorkingDays(java.util.Date from, java.util.Date to);
+
 }

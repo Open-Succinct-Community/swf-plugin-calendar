@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.venky.core.date.DateUtils;
+import com.venky.core.util.Bucket;
 import com.venky.swf.db.Database;
 import com.venky.swf.db.table.ModelImpl;
 import com.venky.swf.plugins.calendar.db.model.WorkCalendar.DayType;
@@ -27,14 +28,6 @@ public class WorkCalendarImpl extends ModelImpl<WorkCalendar>{
 		return getWorkSlot(date) != null;
 	}
 	
-	public Date nextWorkingDay(Date after){
-		Date nextDay = DateUtils.addHours(after, 24);
-		while (!isWorking(nextDay)){
-			nextDay = DateUtils.addHours(nextDay, 24);
-		}
-		return nextDay;
-	}
-
 	public WorkSlot getSpecialWorkSlot(java.util.Date date){
 		WorkCalendar wc = getProxy();
 		validateInput(date);
@@ -58,6 +51,15 @@ public class WorkCalendarImpl extends ModelImpl<WorkCalendar>{
 			return null;
 		}
 	}
+
+	public Date nextWorkingDay(Date after){
+		Date nextDay = DateUtils.addHours(after, 24);
+		while (!isWorking(nextDay)){
+			nextDay = DateUtils.addHours(nextDay, 24);
+		}
+		return nextDay;
+	}
+
 	public WorkSlot getDefaultWorkSlot(java.util.Date date){
 		WorkCalendar wc = getProxy();
 		validateInput(date);
@@ -69,9 +71,11 @@ public class WorkCalendarImpl extends ModelImpl<WorkCalendar>{
 
 		for (WorkDay day : workdays){
 			if (DOW.getDOWNumber(day.getDayOfWeek()) == iDow){
-				Date shiftStart = DateUtils.getTimeOfDay(date,day.getWorkSlot().getStartTime());
+				if (DateUtils.isStartOfDay(date)){
+					return day.getWorkSlot();
+				}
 				Date shiftEnd = DateUtils.getTimeOfDay(date,day.getWorkSlot().getEndTime());
-				if ((shiftStart.compareTo(date) <= 0  || date.getTime() == DateUtils.getStartOfDay(date.getTime())) && shiftEnd.compareTo(date) >=0){
+				if (shiftEnd.compareTo(date) >=0){
 					return day.getWorkSlot();
 				}
 			}
@@ -97,5 +101,15 @@ public class WorkCalendarImpl extends ModelImpl<WorkCalendar>{
 		}
 
 		return  getDefaultWorkSlot(date);
+	}
+
+	public int numWorkingDays(java.util.Date from, java.util.Date to){
+		Bucket numWorkingDays = new Bucket();
+		for (Date date = from  ; !date.after(to) ; date = DateUtils.addHours(date, 24)){
+			if (isWorking(date)){
+				numWorkingDays.increment();
+			}
+		}
+		return numWorkingDays.intValue();
 	}
 }
